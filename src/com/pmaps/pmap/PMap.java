@@ -17,7 +17,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import com.pmaps.PMapException;
 import com.pmaps.pmap.filedriver.DataFileDriver;
 import com.pmaps.pmap.filedriver.FileDriver;
-import com.pmaps.pmap.filedriver.RandomAccessCachedFileDriver;
+import com.pmaps.pmap.filedriver.RandomAccessCachedIndexFileDriver;
 import com.pmaps.pmap.filedriver.RandomAccessFileDriver;
 import com.pmaps.pmap.index.BTreeNode;
 import com.pmaps.pmap.index.BTreeNodeDriver;
@@ -178,7 +178,7 @@ public class PMap<K, V> implements Map<K, V> {
 		}
 
 		// set the file driver instances
-		this.indexFileDriver = cacheIndex ? new RandomAccessCachedFileDriver(indexFile) : new RandomAccessFileDriver(indexFile);
+		this.indexFileDriver = cacheIndex ? new RandomAccessCachedIndexFileDriver(indexFile) : new RandomAccessFileDriver(indexFile);
 		File dataFile = new File(baseDirectory, mapName + ".data");
 		this.pairFileDriver = new RandomAccessFileDriver(dataFile);
 
@@ -204,7 +204,7 @@ public class PMap<K, V> implements Map<K, V> {
 			init(indexFile);
 		}
 		// set the file driver instances
-		this.indexFileDriver = cacheIndex ? new RandomAccessCachedFileDriver(indexFile) : new RandomAccessFileDriver(indexFile);
+		this.indexFileDriver = cacheIndex ? new RandomAccessCachedIndexFileDriver(indexFile) : new RandomAccessFileDriver(indexFile);
 		this.pairFileDriver = new DataFileDriver(mapName, baseDirectory, maxDataFileSize, maxNumberOfDataFile);
 
 		// init the files and data.

@@ -13,7 +13,7 @@ import java.util.List;
 import com.pmaps.pmap.PMap;
 import com.pmaps.pmap.index.BTreeNode;
 
-public class RandomAccessCachedFileDriver implements FileDriver {
+public class RandomAccessCachedIndexFileDriver implements FileDriver {
 
 	private final static long POSITION_FILE_LENGTH = PMap.POSITION_FREE_LONG_VALUE;
 	private final static long POSITION_INDEX_START = PMap.POSITION_START_DATA;
@@ -44,7 +44,7 @@ public class RandomAccessCachedFileDriver implements FileDriver {
 
 	private ByteBufferOffset currentByteBufferOffset;
 
-	public RandomAccessCachedFileDriver(File file) throws IOException {
+	public RandomAccessCachedIndexFileDriver(File file) throws IOException {
 		if (!file.exists()) {
 
 		}
